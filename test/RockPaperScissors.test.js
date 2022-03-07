@@ -91,4 +91,18 @@ contract("RockPaperScissors", (accounts) => {
       console.log("error:", e.reason);
     }
   });
+
+  it("withdraws all ETH from contract", async () => {
+    try {
+      const result = await this.rockPaperScissors.withdrawAllETHFromContract();
+
+      assert.equal(
+        await web3.eth.getBalance(this.rockPaperScissors.address),
+        0,
+        "All ETH not withdrawn"
+      );
+    } catch (e) {
+      console.log("error:", e);
+    }
+  });
 });
